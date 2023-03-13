@@ -1,3 +1,2 @@
 #!/bin/bash
-find . -type f -iname '*.gif' -exec sh -c 'for file do printf "%s\n" "${file%.*}" | sed -e "s/^\.\///" ; done' sh {} + | LC_COLLATE=C sort -f
-
+echo -en $(cut -c1 | tr -d '\n')'\n'
