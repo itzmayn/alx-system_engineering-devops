@@ -1,2 +1,4 @@
 #!/bin/bash
-echo "obase=16; $DECIMAL" | bc
+#!/bin/bash
+result=$((water + stir))
+echo "The sum of $WATER (base water) and $STIR (base stir) is $result (base bestchol)."
