@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Kills the infinite loop that displays "To infinity and beyond" indefinitely.
+
+# Use the 'pgrep' command with the '-f' option to find the process ID (PID) of the process that matches the specified pattern.
+# The pattern is "4-to_infinity_and_beyond", which is part of the command line.
+# The '$( )' syntax captures the output of the 'pgrep' command and passes it as an argument to the 'kill' command.
+# The 'kill' command is then used to terminate the process with the captured PID.
+kill "$(pgrep -f 4-to_infinity_and_beyond)"

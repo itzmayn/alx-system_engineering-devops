@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script kills the process named "7-highlander" using the SIGKILL signal.
+
+# Use the 'pkill' command with the '-SIGKILL' option to forcefully terminate the process.
+# The '-f' option allows matching against the full command line to ensure the correct process is killed.
+pkill -SIGKILL -f "7-highlander"

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Kills the infinite loop that displays "To infinity and beyond" indefinitely.
+
+# Use the 'pkill' command with the '-f' option to find and terminate the process that matches the specified pattern.
+# In this case, it looks for the process with the command-line containing "4-to_infinity_and_beyond" and terminates it.
+pkill -f 4-to_infinity_and_beyond

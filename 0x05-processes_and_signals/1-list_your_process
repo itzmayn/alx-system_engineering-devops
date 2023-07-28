@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Bash script that displays a list of currently running processes containing "bash".
+
+# Use the 'ps' command with the 'f' and 'a' options to display a full listing of all processes in a tree-like format.
+# The output will include the process hierarchy with parent-child relationships.
+# Pipe the output to 'grep' command to filter the lines containing the word "bash".
+ps faux | grep "bash"

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+pid_file="/var/run/myscript.pid"
+
+# Function to handle SIGTERM and SIGQUIT signals
+cleanup() {
+  echo "I hate the kill command"
+  rm -f "$pid_file"
+  exit
+}
+
+# Function to handle SIGINT signal
+no_love() {
+  echo "Y U no love me?!"
+}
+
+# Set up signal traps
+trap cleanup SIGTERM SIGQUIT
+trap no_love SIGINT
+
+# Save the current PID to the pid file
+echo "$$" > "$pid_file"
+
+# Infinite loop to display "To infinity and beyond"
+while true; do
+  echo "To infinity and beyond"
+  sleep 1
+done
