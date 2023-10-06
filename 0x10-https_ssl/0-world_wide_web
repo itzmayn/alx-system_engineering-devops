@@ -17,3 +17,5 @@ elif [ "$#" == 2 ]
 then
   domain_information "$1" "$2"
 fi
+    server 338094-web-01 100.25.165.72:80 check
+    server 338094-web-02 34.203.29.217:80 check
