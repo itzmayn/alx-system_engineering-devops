@@ -1,30 +1,26 @@
+sudo apt-get update
+sudo apt-get install certbot
+sudo certbot certonly --standalone -d www.example.com
+# /etc/haproxy/haproxy.cfg
+
 global
-   log 127.0.0.1 local0 notice
-   maxconn 2000
-   user haproxy
-   group haproxy
+    ssl-default-bind-ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS_AES_128_GCM_SHA256
+    ssl-default-bind-options no-sslv3 no-tlsv10 no-tlsv11 no-tls-tickets
 
 defaults
-   log global
-   mode http
-   option httplog
-   option dontlognull
-   retries 3
-   option redispatch
-   timeout connect 5000
-   timeout client 10000
-   timeout server 10000
+    mode http
+    timeout connect 5s
+    timeout client 50s
+    timeout server 50s
 
-frontend www-https
-    bind 0.0.0.0:80
-    bind 0.0.0.0:443 ssl crt-list /etc/haproxy/certs/get-daniel.tech.pem
-    http-request redirect scheme https unless { ssl_fc }
-    stats uri /haproxy?stats
-    option forwardfor
-    default_backend www-backend
+frontend https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.saheed.tech/fullchain.pem
+    default_backend backend_servers
 
-backend www-backend
+backend backend_servers
     balance roundrobin
-    option httpchk HEAD / HTTP/1.1\r\nHost:localhost
+    option httpchk GET / HTTP/1.1\r\nHost:\ www.saheed.tech
     server 338094-web-01 100.25.165.72:80 check
     server 338094-web-02 34.203.29.217:80 check
+sudo service haproxy restar
+
